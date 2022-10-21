@@ -1,0 +1,444 @@
+:root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: rgb(214, 222, 224);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--color-light--2);
+  font-weight: 400;
+  line-height: 1.6;
+  height: 100vh;
+  overscroll-behavior-y: none;
+
+  background-color: #fff;
+  padding: 2.5rem;
+
+  display: flex;
+}
+
+/* GENERAL */
+a:link,
+a:visited {
+  color: var(--color-brand--1);
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex-basis: 50rem;
+  background-color: var(--color-dark--1);
+  padding: 3rem 5rem 4rem 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 5.2rem;
+  align-self: center;
+  margin-bottom: 4rem;
+}
+
+.workouts {
+  list-style: none;
+  height: 77vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.workouts::-webkit-scrollbar {
+  width: 0;
+}
+
+.workout {
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.25rem;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+}
+.workout--running {
+  border-left: 5px solid var(--color-brand--2);
+}
+.workout--cycling {
+  border-left: 5px solid var(--color-brand--1);
+}
+
+.workout__title {
+  font-size: 1.7rem;
+  font-weight: 600;
+  grid-column: 1 / -1;
+}
+
+.workout__details {
+  display: flex;
+  align-items: baseline;
+}
+
+.workout__icon {
+  font-size: 1.8rem;
+  margin-right: 0.2rem;
+  height: 0.28rem;
+}
+
+.workout__value {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.workout__unit {
+  font-size: 1.1rem;
+  color: var(--color-light--1);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.form {
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.75rem;
+  margin-bottom: 1.75rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2.5rem;
+
+  /* Match height and activity boxes */
+  height: 9.25rem;
+  transition: all 0.5s, transform 1ms;
+}
+
+.form.hidden {
+  transform: translateY(-30rem);
+  height: 0;
+  padding: 0 2.25rem;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.form__row {
+  display: flex;
+  align-items: center;
+}
+
+.form__row--hidden {
+  display: none;
+}
+
+.form__label {
+  flex: 0 0 50%;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.3rem 1.1rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-light--3);
+  transition: all 0.2s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.form__btn {
+  display: none;
+}
+
+.copyright {
+  margin-top: auto;
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--color-light--1);
+}
+
+.twitter-link:link,
+.twitter-link:visited {
+  color: var(--color-light--1);
+  transition: all 0.2s;
+}
+
+.twitter-link:hover,
+.twitter-link:active {
+  color: var(--color-light--2);
+}
+
+/* MAP */
+#map {
+  flex: 1;
+  height: 100%;
+  background-color: var(--color-light--1);
+}
+
+/* Popup width is defined in JS using options */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-dark--1);
+}
+
+.running-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-brand--2);
+}
+.cycling-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-brand--1);
+}
+
+/* Navbar container */
+.nav__bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+/* Dropdown button */
+.dropdown .btn__drop {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--color-light--2);
+  font-family: inherit;
+  margin: 0;
+  border-radius: 5px;
+  /* padding: 4px; */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover,
+.dropdown:hover .btn__drop {
+  background-color: var(--color-brand--1);
+  color: var(--color-dark--1);
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown__content {
+  display: none;
+  border-radius: 5px;
+  position: absolute;
+  background-color: var(--color-dark--2);
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px var(--color-dark--1);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown__content a {
+  float: none;
+  color: var(--color-light--2);
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border-radius: 5px;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown__content a:hover {
+  background-color: var(--color-brand--1);
+  color: var(--color-dark--1);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown__content {
+  display: block;
+}
+.container__btn {
+  grid-column: 4;
+  grid-row: 1;
+
+  justify-content: flex-end;
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+}
+a.btn__delete,
+a.btn__delete:visited,
+a.btn__delete:active {
+  color: var(--color-light--2);
+  text-decoration: none;
+  font-size: inherit;
+  border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+a.btn__edit,
+a.btn__edit:visited,
+a.btn__edit:active {
+  color: var(--color-light--2);
+  text-decoration: none;
+  text-align: bottom;
+  font-size: inherit;
+  border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.container__btn {
+  position: absolute;
+}
+/* a.btn__delete {
+  position: absolute;
+
+}
+a.btn__edit {
+  position: absolute;
+} */
+
+a.btn__delete--all,
+a.btn__delete--all:visited,
+a.btn__delete--all:active {
+  color: var(--color-light--2);
+  text-decoration: none;
+  text-align: bottom;
+  font-size: 15px;
+  border-radius: 5px;
+}
+a.btn__cycling:hover,
+a.btn__delete--all:hover {
+  background-color: var(--color-brand--1);
+  color: var(--color-dark--1);
+}
+a.btn__running:hover {
+  background-color: var(--color-brand--2);
+  color: var(--color-dark--1);
+}
+
+.workout__discription.hidden {
+  transform: translateY(-30rem);
+  height: 0;
+  padding: 0 2.25rem;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  transition: all 0.5s;
+}
+.overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.alert {
+  background-color: var(--color-dark--1);
+  padding: 20px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 2000;
+  max-width: 380px;
+  top: 40%;
+  left: 40%;
+}
+.container__error__massage {
+  display: flex;
+}
+.alert__img {
+  max-width: 100px;
+  max-height: 150px;
+}
+span.error__massage {
+  color: var(--color-brand--1);
+  padding: 10px;
+  padding-top: 30px;
+  font-size: 20px;
+}
+div.alert__btn__container {
+  display: flex;
+  justify-content: center;
+  gap: 20%;
+  padding: 20px;
+}
+.alert__btn__container button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+.btn__yes {
+  color: var(--color-light--2);
+  cursor: pointer;
+  transition: all 0.5s;
+  width: 50px;
+  height: 50px;
+}
+.btn__no {
+  color: var(--color-light--2);
+  cursor: pointer;
+  transition: all 0.5s;
+  width: 50px;
+  height: 50px;
+}
+.btn__yes:hover {
+  font-size: 30px;
+  color: red;
+}
+.btn__no:hover {
+  font-size: 30px;
+  color: var(--color-brand--2);
+}
+.alert.hidden {
+  display: none;
+}
+@keyframes attention {
+  from {
+    background-color: var(--color-light--2);
+  }
+  to {
+    background-color: var(--color-dark--2);
+  }
+}
+
+.form.attention {
+  animation: attention 2s;
+  animation-iteration-count: 1;
+}
